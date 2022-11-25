@@ -48,16 +48,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
+  int _counter = 3;
+  List primeList = [2];
+  bool prime = true;
+  bool notGetPrime = true;
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      notGetPrime = true;
+      while(notGetPrime){
+        prime = true;
+        for(var i in primeList){
+          if(_counter % i == 0){
+            prime = false;
+          }
+        }
+        if(prime == true){
+          primeList.add(_counter);
+          notGetPrime = false;
+        }
+        _counter = _counter+2;
+      }
     });
   }
 
@@ -99,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$primeList',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
