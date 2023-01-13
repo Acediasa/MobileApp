@@ -1,4 +1,4 @@
-import 'package:cs311hw06/pokemon_api.dart';
+import 'pokemon_api.dart';
 import 'package:flutter/material.dart';
 import 'package:strings/strings.dart';
 
