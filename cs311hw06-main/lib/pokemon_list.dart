@@ -11,28 +11,34 @@ class PokemonList extends StatefulWidget {
 }
 
 class _PokemonListState extends State<PokemonList> {
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<PokemonService>(builder: (_, pokemonService, __) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Pokemon List'),
-          backgroundColor: pokemonService.theme,
+          backgroundColor: pokemonService.currentTheme,
         ),
         body: GridView.builder(
           itemCount: pokemonService.pokemonCount,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: (){
-                pokemonService.changePokemonTheme(index+1);
-                pokemonService.currentPokemonBorder(index+1);
+              onTap: () {
+                pokemonService.changePokemonTheme(index + 1);
+                pokemonService.currentPokemonBorder(index + 1);
               },
               child: Container(
-                decoration: BoxDecoration(border: pokemonService.currentPokemon == index+1 ? Border.all(color: Colors.black, width: 3.0) : Border.all(color: Colors.transparent,),),
+                decoration: BoxDecoration(
+                  border: pokemonService.currentPokemon == index + 1
+                      // Make border black when selected
+                      ? Border.all(color: Colors.black, width: 3.0)
+                      : Border.all(
+                          color: Colors.transparent,
+                        ),
+                ),
                 child: Image.network(genPokemonImageUrl(index + 1)),
               ),
-              // child: Image.network(genPokemonImageUrl(index + 1)),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -42,5 +48,3 @@ class _PokemonListState extends State<PokemonList> {
     });
   }
 }
-
-

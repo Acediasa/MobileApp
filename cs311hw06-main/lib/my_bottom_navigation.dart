@@ -12,8 +12,8 @@ class MyBottomNavigation extends StatefulWidget {
 }
 
 class _MyBottomNavigationState extends State<MyBottomNavigation> {
-
   int _currentIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<PokemonService>(builder: (_, pokemonService, __) {
@@ -26,7 +26,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: pokemonService.theme,
+          selectedItemColor: pokemonService.currentTheme,
           currentIndex: _currentIndex,
           onTap: (index) {
             setState(() {
@@ -34,14 +34,9 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
             });
           },
           items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home'
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.catching_pokemon),
-                label: 'Pokemon'
-            ),
+                icon: Icon(Icons.catching_pokemon), label: 'Pokemon'),
           ],
         ),
       );
